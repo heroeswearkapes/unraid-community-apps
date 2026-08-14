@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<Container version="2">
+
+  <Name>Schedules Direct XMLTV</Name>
+
+  <Repository>heroeswearkapes/schedules-direct-xmltv:latest</Repository>
+
+  <Registry>https://hub.docker.com/r/heroeswearkapes/schedules-direct-xmltv</Registry>
+
+  <Network>bridge</Network>
+
+  <MyIP/>
+
+  <Shell>bash</Shell>
+
+  <Privileged>false</Privileged>
+
+  <Support>https://github.com/heroeswearkapes/schedules-direct-xmltv/issues</Support>
+
+  <Project>https://github.com/heroeswearkapes/schedules-direct-xmltv</Project>
+
+  <Overview>
+Schedules Direct XMLTV automatically downloads TV guide data from Schedules Direct, converts it to XMLTV format, refreshes the guide on a schedule, and serves the resulting tvxml.xml file over HTTP.
+
+Designed for use with Threadfin, Jellyfin, Plex, Emby, TVHeadend, and other applications that accept an XMLTV guide URL.
+
+Supports both amd64 and arm64 Docker hosts.
+  </Overview>
+
+  <Category>MediaApp:Other Tools:Utilities</Category>
+
+  <WebUI/>
+
+  <TemplateURL>https://raw.githubusercontent.com/heroeswearkapes/unraid-community-apps/main/templates/schedules-direct-xmltv.xml</TemplateURL>
+
+  <Icon>https://raw.githubusercontent.com/heroeswearkapes/unraid-community-apps/main/icons/schedules-direct-xmltv.png</Icon>
+
+  <ExtraParams/>
+
+  <PostArgs/>
+
+  <CPUset/>
+
+  <DateInstalled/>
+
+  <DonateText/>
+
+  <DonateLink/>
+
+  <Requires>
+A valid Schedules Direct subscription is required.
+
+Before installation, obtain the Schedules Direct lineup ID or lineup IDs you want to use.
+
+The generated XMLTV guide will be available at:
+
+http://YOUR-UNRAID-IP:51969/tvxml.xml
+  </Requires>
+
+  <Config
+    Name="XMLTV HTTP Port"
+    Target="80"
+    Default="51969"
+    Mode="tcp"
+    Description="Host port used to serve the generated tvxml.xml file."
+    Type="Port"
+    Display="always"
+    Required="true"
+    Mask="false">51969</Config>
+
+  <Config
+    Name="Schedules Direct Username"
+    Target="SD_USERNAME"
+    Default=""
+    Mode=""
+    Description="Your Schedules Direct account username."
+    Type="Variable"
+    Display="always"
+    Required="true"
+    Mask="false"></Config>
+
+  <Config
+    Name="Schedules Direct Password"
+    Target="SD_PASSWORD"
+    Default=""
+    Mode=""
+    Description="Your Schedules Direct account password."
+    Type="Variable"
+    Display="always"
+    Required="true"
+    Mask="true"></Config>
+
+  <Config
+    Name="Schedules Direct Lineups"
+    Target="SD_LINEUPS"
+    Default=""
+    Mode=""
+    Description="Comma-separated Schedules Direct lineup IDs. Example: USA-OTA-43123"
+    Type="Variable"
+    Display="always"
+    Required="true"
+    Mask="false"></Config>
+
+  <Config
+    Name="Guide Days"
+    Target="SD_FETCH_DAYS"
+    Default="2"
+    Mode=""
+    Description="Number of days of guide data to download during each synchronization."
+    Type="Variable"
+    Display="always"
+    Required="true"
+    Mask="false">2</Config>
+
+  <Config
+    Name="Timezone"
+    Target="TZ"
+    Default="America/New_York"
+    Mode=""
+    Description="Timezone used by the container and the scheduled midnight guide refresh."
+    Type="Variable"
+    Display="always"
+    Required="true"
+    Mask="false">America/New_York</Config>
+
+  <Config
+    Name="XMLTV Data"
+    Target="/var/www/html"
+    Default="/mnt/user/appdata/schedules-direct-xmltv"
+    Mode="rw"
+    Description="Persistent storage for generated XMLTV data and Schedules Direct configuration."
+    Type="Path"
+    Display="always"
+    Required="true"
+    Mask="false">/mnt/user/appdata/schedules-direct-xmltv</Config>
+
+</Container>
