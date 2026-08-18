@@ -95,7 +95,7 @@ http://YOUR-UNRAID-IP:51969/tvxml.xml
     Target="SD_LINEUPS"
     Default=""
     Mode=""
-    Description="Comma-separated Schedules Direct lineup IDs. Example: USA-OTA-43228"
+    Description="Comma-separated Schedules Direct lineup IDs. Example: USA OTA (example ZIP: 00000)"
     Type="Variable"
     Display="always"
     Required="true"
