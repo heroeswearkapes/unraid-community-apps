@@ -30,7 +30,7 @@ Supports:
 Includes dynamic engine controls, runtime diagnostics, model management, and Intel XPU acceleration support for compatible Intel Arc GPUs.
   </Overview>
 
-  <Category>AI:Other:</Category>
+  <Category>AI: Other:</Category>
 
   <WebUI>http://[IP]:[PORT:7860]</WebUI>
 
