@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+<Container version="2">
+
+  <Name>TTS Workbench</Name>
+
+  <Repository>heroeswearkapes/tts-workbench:latest</Repository>
+
+  <Registry>https://hub.docker.com/r/heroeswearkapes/tts-workbench</Registry>
+
+  <Network>bridge</Network>
+
+  <MyIP/>
+
+  <Shell>bash</Shell>
+
+  <Privileged>false</Privileged>
+
+  <Support>https://github.com/heroeswearkapes/tts-workbench/issues</Support>
+
+  <Project>https://github.com/heroeswearkapes/tts-workbench</Project>
+
+  <Overview>
+TTS Workbench is a self-hosted multi-engine AI text-to-speech platform with a unified Gradio interface.
+
+Supports:
+- Kokoro preset voice synthesis
+- F5-TTS voice cloning
+- Qwen3-TTS generation
+
+Includes dynamic engine controls, runtime diagnostics, model management, and Intel XPU acceleration support for compatible Intel Arc GPUs.
+  </Overview>
+
+  <Category>AI:Other:</Category>
+
+  <WebUI>http://[IP]:[PORT:7860]</WebUI>
+
+  <TemplateURL>https://raw.githubusercontent.com/heroeswearkapes/unraid-community-apps/main/templates/TTS-Workbench.xml</TemplateURL>
+
+  <Icon>https://raw.githubusercontent.com/heroeswearkapes/unraid-community-apps/main/icons/tts_workbench.png</Icon>
+
+  <ExtraParams/>
+
+  <PostArgs/>
+
+  <CPUset/>
+
+  <DateInstalled/>
+
+  <DonateText/>
+
+  <DonateLink/>
+
+  <Requires>
+CPU-only operation is supported.
+
+For Intel GPU acceleration:
+- An Intel Arc GPU must be available on the Unraid host.
+- The Intel GPU render device must be passed through.
+- Change the Intel GPU device entry to match your system.
+
+The exact /dev/dri/renderD### device varies between systems.
+  </Requires>
+
+
+  <Config
+    Name="WebUI"
+    Target="7860"
+    Default="7860"
+    Mode="tcp"
+    Description="TTS Workbench Gradio Web Interface."
+    Type="Port"
+    Display="always"
+    Required="true"
+    Mask="false">7860</Config>
+
+
+  <Config
+    Name="Intel GPU"
+    Target="/dev/dri/renderD128"
+    Default="/dev/dri/renderD128"
+    Mode=""
+    Description="Intel GPU render device. Change this to the renderD### device belonging to your Intel Arc GPU."
+    Type="Device"
+    Display="always"
+    Required="false"
+    Mask="false">/dev/dri/renderD128</Config>
+
+
+  <Config
+    Name="Models"
+    Target="/models"
+    Default="/mnt/user/AI/tts-workbench/models"
+    Mode="rw"
+    Description="Persistent storage for downloaded TTS models."
+    Type="Path"
+    Display="always"
+    Required="true"
+    Mask="false">/mnt/user/AI/tts-workbench/models</Config>
+
+
+  <Config
+    Name="Voices"
+    Target="/voices"
+    Default="/mnt/user/AI/tts-workbench/voices"
+    Mode="rw"
+    Description="Persistent storage for Kokoro voices and saved voice profiles."
+    Type="Path"
+    Display="always"
+    Required="true"
+    Mask="false">/mnt/user/AI/tts-workbench/voices</Config>
+
+
+  <Config
+    Name="Input"
+    Target="/input"
+    Default="/mnt/user/AI/tts-workbench/input"
+    Mode="rw"
+    Description="Input storage for reference audio and uploaded files."
+    Type="Path"
+    Display="always"
+    Required="true"
+    Mask="false">/mnt/user/AI/tts-workbench/input</Config>
+
+
+  <Config
+    Name="Output"
+    Target="/output"
+    Default="/mnt/user/AI/tts-workbench/output"
+    Mode="rw"
+    Description="Generated audio output storage."
+    Type="Path"
+    Display="always"
+    Required="true"
+    Mask="false">/mnt/user/AI/tts-workbench/output</Config>
+
+
+  <Config
+    Name="Config"
+    Target="/config"
+    Default="/mnt/user/appdata/tts-workbench"
+    Mode="rw"
+    Description="Persistent application configuration storage."
+    Type="Path"
+    Display="always"
+    Required="true"
+    Mask="false">/mnt/user/appdata/tts-workbench</Config>
+
+
+</Container>

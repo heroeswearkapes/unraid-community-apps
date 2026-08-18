@@ -4,11 +4,11 @@
   <Profile>
 heroeswearkapes maintains a collection of Unraid Community Applications templates for Docker projects focused on media, automation, AI, and home-lab workloads.
 
-Current applications include ComfyUI Intel XPU and Schedules Direct XMLTV, with additional templates added as projects are published and validated for Unraid.
+Current applications include ComfyUI Intel XPU, Schedules Direct XMLTV, and TTS Workbench, with additional templates added as projects are published and validated for Unraid.
   </Profile>
 
   <WebPage>https://github.com/heroeswearkapes/unraid-community-apps</WebPage>
 
-  <Icon>https://raw.githubusercontent.com/heroeswearkapes/unraid-community-apps/main/icons/schedules-direct-xmltv.png</Icon>
+  <Icon>https://raw.githubusercontent.com/heroeswearkapes/unraid-community-apps/main/icons/maintainer.png</Icon>
 
 </Maintainer>
