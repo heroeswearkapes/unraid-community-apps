@@ -160,4 +160,26 @@ The exact /dev/dri/renderD### device varies between systems. Verify which render
     Required="false"
     Mask="true"></Config>
 
+  <Config
+    Name="Additional ComfyUI CLI Arguments"
+    Target="CLI_ARGS"
+    Default=""
+    Mode=""
+    Description="Optional additional command-line arguments passed to ComfyUI at startup. Example: --disable-dynamic-vram --lowvram --cpu-vae --reserve-vram=1 --disable-smart-memory"
+    Type="Variable"
+    Display="advanced"
+    Required="false"
+    Mask="false"></Config>
+
+  <Config
+    Name="Additional Python Packages"
+    Target="PIP_PACKAGES"
+    Default=""
+    Mode=""
+    Description="Optional space-separated Python packages installed at container startup. Example: opencv-python imageio_ffmpeg"
+    Type="Variable"
+    Display="advanced"
+    Required="false"
+    Mask="false"></Config>  
+
 </Container>
