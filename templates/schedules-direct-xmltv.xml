@@ -24,6 +24,8 @@ Schedules Direct XMLTV automatically downloads TV guide data from Schedules Dire
 
 Designed for use with Threadfin, Jellyfin, Plex, Emby, TVHeadend, and other applications that accept an XMLTV guide URL.
 
+Supports first-run setup mode so a lineup ID does not need to be known before installation.
+
 Supports both amd64 and arm64 Docker hosts.
   </Overview>
 
@@ -31,9 +33,9 @@ Supports both amd64 and arm64 Docker hosts.
 
   <WebUI/>
 
-  <TemplateURL>https://raw.githubusercontent.com/heroeswearkapes/unraid-community-apps/main/templates/schedules-direct-xmltv.xml</TemplateURL>
+  <TemplateURL>https://raw.githubusercontent.com/heroeswearkapes/schedules-direct-xmltv/main/unraid/schedules-direct-xmltv.xml</TemplateURL>
 
-  <Icon>https://raw.githubusercontent.com/heroeswearkapes/unraid-community-apps/main/icons/schedules-direct-xmltv.png</Icon>
+  <Icon>https://raw.githubusercontent.com/heroeswearkapes/schedules-direct-xmltv/main/assets/icon.png</Icon>
 
   <ExtraParams/>
 
@@ -50,9 +52,23 @@ Supports both amd64 and arm64 Docker hosts.
   <Requires>
 A valid Schedules Direct subscription is required.
 
-Before installation, obtain the Schedules Direct lineup ID or lineup IDs you want to use.
+If you already know your Schedules Direct lineup ID, enter it in the Schedules Direct Lineups field during installation.
 
-The generated XMLTV guide will be available at:
+If you do not know your lineup ID, leave Schedules Direct Lineups blank. The container will start in setup mode.
+
+After the container starts, open either the Unraid Terminal or the container Console and run:
+
+tv_grab_zz_sdjson --configure --config-file /tmp/sdjson-setup.conf
+
+If using the Unraid Terminal instead of the container Console, run:
+
+docker exec -it Schedules-Direct-XMLTV tv_grab_zz_sdjson --configure --config-file /tmp/sdjson-setup.conf
+
+The configuration wizard will allow you to search for and add a Schedules Direct lineup using your country and ZIP/postal code.
+
+After discovering your lineup ID, edit the container, enter the lineup ID in Schedules Direct Lineups, apply the changes, and restart the container.
+
+The generated XMLTV guide will then be available at:
 
 http://YOUR-UNRAID-IP:51969/tvxml.xml
   </Requires>
@@ -95,10 +111,10 @@ http://YOUR-UNRAID-IP:51969/tvxml.xml
     Target="SD_LINEUPS"
     Default=""
     Mode=""
-    Description="Comma-separated Schedules Direct lineup IDs. Example: USA-OTA-(example ZIP: 00000)"
+    Description="Optional comma-separated Schedules Direct lineup IDs. Leave blank during initial setup if you do not know your lineup ID yet. After the container starts, use the SD-JSON configuration wizard to discover or add a lineup. Example: USA-OTA-10001"
     Type="Variable"
     Display="always"
-    Required="true"
+    Required="false"
     Mask="false"></Config>
 
   <Config
