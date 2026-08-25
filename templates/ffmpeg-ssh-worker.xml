@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<Container version="2">
+
+  <Name>FFmpeg SSH Worker</Name>
+
+  <Repository>heroeswearkapes/ffmpeg-ssh-worker:latest</Repository>
+
+  <Registry>https://hub.docker.com/r/heroeswearkapes/ffmpeg-ssh-worker</Registry>
+
+  <Network>bridge</Network>
+
+  <MyIP/>
+
+  <Shell>bash</Shell>
+
+  <Privileged>false</Privileged>
+
+  <Support>https://github.com/heroeswearkapes/ffmpeg-ssh-worker/issues</Support>
+
+  <Project>https://github.com/heroeswearkapes/ffmpeg-ssh-worker</Project>
+
+  <Overview>
+FFmpeg SSH Worker is a lightweight, CPU-based FFmpeg rendering worker with SSH public-key authentication, designed for automation workflows.
+
+Originally created as the rendering node for an n8n workflow that automatically assembled YouTube Shorts, the worker can be used by n8n or any other automation platform, script, or application capable of executing commands over SSH.
+
+Provides FFmpeg, OpenSSH, persistent SSH host keys, a shared /work directory, and common media-processing utilities.
+
+CPU rendering only. No GPU passthrough is required.
+
+Supports both amd64 and arm64 Docker hosts.
+  </Overview>
+
+  <Category>MediaApp:Other Tools:Utilities</Category>
+
+  <WebUI/>
+
+  <TemplateURL>https://raw.githubusercontent.com/heroeswearkapes/unraid-community-apps/main/templates/ffmpeg-ssh-worker.xml</TemplateURL>
+
+  <Icon>https://raw.githubusercontent.com/heroeswearkapes/unraid-community-apps/main/icons/ffmpeg-ssh-worker.png</Icon>
+
+  <ExtraParams/>
+
+  <PostArgs/>
+
+  <CPUset/>
+
+  <DateInstalled/>
+
+  <DonateText/>
+
+  <DonateLink/>
+
+  <Requires>
+FFmpeg SSH Worker uses SSH public-key authentication.
+
+The SSH username is:
+
+worker
+
+Password authentication and root SSH login are disabled.
+
+After installation, place your SSH PUBLIC key in:
+
+/mnt/user/appdata/ffmpeg-ssh-worker/authorized_keys
+
+Only the public key should be placed in authorized_keys. Never place your SSH private key in the container configuration directory.
+
+If you do not already have an SSH key pair, one can be generated from another system with:
+
+ssh-keygen -t ed25519
+
+After adding authorized_keys, restart the container.
+
+With the default port configuration, connect using:
+
+ssh -p 2222 worker@YOUR-UNRAID-IP
+
+The /work directory is the shared FFmpeg workspace used for source media, intermediate files, and completed renders.
+
+FFmpeg SSH Worker performs CPU-based media processing. No GPU is required.
+  </Requires>
+
+  <Config
+    Name="SSH Port"
+    Target="22"
+    Default="2222"
+    Mode="tcp"
+    Description="Host port used to connect to the FFmpeg worker over SSH. Example: ssh -p 2222 worker@YOUR-UNRAID-IP"
+    Type="Port"
+    Display="always"
+    Required="true"
+    Mask="false">2222</Config>
+
+  <Config
+    Name="Configuration"
+    Target="/config"
+    Default="/mnt/user/appdata/ffmpeg-ssh-worker"
+    Mode="rw"
+    Description="Persistent SSH configuration. Place your public SSH key in authorized_keys within this directory. Persistent SSH host keys are also stored here."
+    Type="Path"
+    Display="always"
+    Required="true"
+    Mask="false">/mnt/user/appdata/ffmpeg-ssh-worker</Config>
+
+  <Config
+    Name="Work Directory"
+    Target="/work"
+    Default="/mnt/user/ffmpeg-work"
+    Mode="rw"
+    Description="Shared workspace for source media, intermediate files, and completed FFmpeg renders. The worker account must have write access to this location."
+    Type="Path"
+    Display="always"
+    Required="true"
+    Mask="false">/mnt/user/ffmpeg-work</Config>
+
+  <Config
+    Name="Timezone"
+    Target="TZ"
+    Default="America/New_York"
+    Mode=""
+    Description="Timezone used inside the container. Use a valid IANA timezone such as America/New_York."
+    Type="Variable"
+    Display="always"
+    Required="true"
+    Mask="false">America/New_York</Config>
+
+</Container>
