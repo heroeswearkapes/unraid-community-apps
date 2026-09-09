@@ -143,7 +143,7 @@ The exact /dev/dri/renderD### device varies between systems. Verify which render
     Target="/config"
     Default="/mnt/user/appdata/comfyui-intel-xpu/config"
     Mode="rw"
-    Description="Persistent ComfyUI Intel XPU configuration directory."
+    Description="Persistent ComfyUI Intel XPU configuration directory. Also stores the persistent pip cache used by PIP_PACKAGES."
     Type="Path"
     Display="always"
     Required="true"
@@ -176,10 +176,10 @@ The exact /dev/dri/renderD### device varies between systems. Verify which render
     Target="PIP_PACKAGES"
     Default=""
     Mode=""
-    Description="Optional space-separated Python packages installed at container startup. Example: opencv-python imageio_ffmpeg"
+    Description="Optional Python packages and pip arguments processed at container startup. Downloaded pip artifacts are cached persistently under /config/pip-cache to speed up container recreation. Installed packages remain container-local and are reinstalled as needed after recreation. Example: opencv-python imageio_ffmpeg"
     Type="Variable"
     Display="always"
     Required="false"
-    Mask="false"></Config>  
+    Mask="false"></Config>
 
 </Container>
