@@ -28,6 +28,11 @@ Supports:
 - Qwen3-TTS generation
 
 Includes dynamic engine controls, runtime diagnostics, model management, and Intel XPU acceleration support for compatible Intel Arc GPUs.
+
+Timezone and updates:
+New output folders for Kokoro, F5-TTS, and Qwen3-TTS follow the container's local date. Unraid's Docker manager normally supplies the host timezone automatically. To use a different timezone, add a TZ environment variable such as America/Los_Angeles or Etc/UTC.
+
+Update the container to receive the timezone fix. Standard timezone names work without a host /etc/localtime mount. Existing output files and folders are retained.
   </Overview>
 
   <Category>AI: Other:</Category>
@@ -127,7 +132,7 @@ The exact /dev/dri/renderD### device varies between systems.
     Target="/output"
     Default="/mnt/user/AI/tts-workbench/output"
     Mode="rw"
-    Description="Generated audio output storage."
+    Description="Generated audio output storage. New date folders use the container's local date; existing files and folders are retained."
     Type="Path"
     Display="always"
     Required="true"
